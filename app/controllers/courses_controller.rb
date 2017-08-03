@@ -2,9 +2,9 @@ class CoursesController < ApplicationController
   def index
     if params.key?(:name)
       name = params[:name]
-      SwingBySwingService.search_courses(name)
+      @courses = SwingBySwingService.search_courses(name)
+    else
+      @courses = []
     end
-
-    @courses = []
   end
 end

@@ -1,1 +1,5 @@
 <%= render "layouts/search", :courses => @courses %>
+
+<% @courses.each do |course| %>
+  <h4> <%= course.name %> </h4>
+<% end %>
