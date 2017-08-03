@@ -1,0 +1,9 @@
+<%= form_tag "/courses/search", method: :get do %>
+<%= label_tag(:name, "Search course by name") %>
+<%= text_field_tag(:name) %>
+<%= submit_tag("Search") %>
+<% end %>
+
+<% courses.each do |course| %>
+  <%= course.name %>
+<% end %>
