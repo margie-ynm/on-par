@@ -9,6 +9,13 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = SwingBySwingService.get_course_by_id(params[:id])
+    course_id = params[:id]
+    @course = SwingBySwingService.get_course_by_id(course_id)
+    
+    @holes = SwingBySwingService.get_holes_for_course(course_id)
+    @holes.each do |hole|
+      hole.save
+    end
+
   end
 end
