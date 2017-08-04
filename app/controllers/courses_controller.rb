@@ -7,4 +7,8 @@ class CoursesController < ApplicationController
       @courses = []
     end
   end
+
+  def show
+    @course = SwingBySwingService.get_course_by_id(params[:id])
+  end
 end

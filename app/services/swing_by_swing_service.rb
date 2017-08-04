@@ -10,4 +10,20 @@ class SwingBySwingService
 
     courses
   end
+
+  def self.get_course_by_id(id)
+    url = "https://api.swingbyswing.com/v2/courses/#{id}?access_token=#{ENV['access_token']}"
+    response = RestClient.get(url).body
+    rawCourseDatum = JSON.parse(response, symbolize_names: true)[:course]
+
+    course = Course.new(
+      rawCourseDatum[:id],
+      rawCourseDatum[:name],
+      rawCourseDatum[:hole_count],
+      rawCourseDatum[:thumbnail],
+      rawCourseDatum[:city],
+      rawCourseDatum[:state_or_province]
+    )
+    course
+  end
 end
