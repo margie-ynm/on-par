@@ -7,4 +7,8 @@ class Scorecard < ActiveRecord::Base
       Hole.new({hole_num: hole.fetch('hole_num'), course_id: hole.fetch('course_id'), par: hole.fetch('par'), yards: hole.fetch('yards'), id: hole.fetch('id')})
     end
   end
+
+  def delete_holes
+    DB.exec("DELETE FROM holes WHERE course_id = #{self.course_id};")
+  end
 end
