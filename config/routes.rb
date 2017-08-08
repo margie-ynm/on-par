@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   get '/courses/search', to: 'courses#index'
   get '/courses/:id', to: 'courses#show'
+
+  get '/courses/:course_id/scorecards/new', to: 'scorecards#create'
 end
