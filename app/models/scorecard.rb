@@ -1,6 +1,7 @@
 DB = PG.connect({dbname: 'on_par_development'})
 
 class Scorecard < ActiveRecord::Base
+  has_many :hole_scores
 
   def holes
     DB.exec("SELECT * FROM holes WHERE course_id = #{self.course_id};").map do |hole|
@@ -11,4 +12,5 @@ class Scorecard < ActiveRecord::Base
   def delete_holes
     DB.exec("DELETE FROM holes WHERE course_id = #{self.course_id};")
   end
+
 end
