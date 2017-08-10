@@ -3,6 +3,13 @@ class HoleScoresController < ApplicationController
     @course_id = params[:course_id]
     @scorecard = Scorecard.find(params[:scorecard_id])
     @holescore = @scorecard.hole_scores.new
+    hole_scores = @scorecard.hole_scores.order(:hole_num)
+    if hole_scores.any?
+      hole_num = hole_scores.last.hole_num + 1
+    else
+      hole_num = 1
+    end
+    @holescore.hole_num = hole_num
   end
 
   def create

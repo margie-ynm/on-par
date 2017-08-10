@@ -1,3 +1,6 @@
+<%= link_to "Home", "/courses/search" %>
+
+<p> <b>HOLE:</b> <%= @holescore.hole_num %> </p>
 <%= form_for @holescore, url: course_scorecard_hole_scores_path(@course_id, @scorecard.id) do |f|%>
   <%= f.label :score %>
   <%= f.text_field :score %>

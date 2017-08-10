@@ -6,3 +6,10 @@
 </div>
 
 <p> <%= link_to "Start Scorecard", new_course_scorecard_path(@course.id) %> </p>
+
+<h3>Scorecards:</h3>
+<ul>
+  <% @course.scorecards.each do |scorecard| %>
+    <li><%= link_to 'Scorecard', course_scorecard_path(@course.id, scorecard.id) %></li>
+  <% end %>
+</ul>
