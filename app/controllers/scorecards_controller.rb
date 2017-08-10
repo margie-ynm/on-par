@@ -1,4 +1,13 @@
 class ScorecardsController < ApplicationController
+
+  def show
+    @scorecard = Scorecard.find(params[:id])
+  end
+
+  def new
+    self.create
+  end
+
   def create
     course_id = params[:course_id]
     @scorecard = Scorecard.new
@@ -9,7 +18,8 @@ class ScorecardsController < ApplicationController
       holes.each do |hole|
         hole.save
       end
-      redirect_to "/courses/#{course_id}"
+      redirect_to new_course_scorecard_hole_score_path(course_id, @scorecard.id)
     end
   end
+
 end

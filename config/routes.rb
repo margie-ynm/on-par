@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get '/courses/search', to: 'courses#index'
-  get '/courses/:id', to: 'courses#show'
 
-  get '/courses/:course_id/scorecards/new', to: 'scorecards#create'
+  resources :courses, only: [:show] do
+    resources :scorecards, only: [:new, :create, :show] do
+      resources :hole_scores, only: [:new, :create]
+    end
+  end
+
 end

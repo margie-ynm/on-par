@@ -1,0 +1,9 @@
+
+
+<% @scorecard.hole_scores.each do |hole_score| %>
+  <p> <%= hole_score.hole_num %> </p>
+  <p> <%= hole_score.score %> </p>
+  <p> <%= hole_score.fairway %> </p>
+  <p> <%= hole_score.green_ir %> </p>
+  <p> <%= hole_score.number_of_putts %> </p>
+<% end %>

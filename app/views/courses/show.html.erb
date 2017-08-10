@@ -5,4 +5,4 @@
   <img src="<%= @course.image_path %>" alt="Course Image">
 </div>
 
-<p> <%= link_to "Start Scorecard", "/courses/#{@course.id}/scorecards/new" %> </p>
+<p> <%= link_to "Start Scorecard", new_course_scorecard_path(@course.id) %> </p>

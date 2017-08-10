@@ -1,0 +1,11 @@
+<%= form_for @holescore, url: course_scorecard_hole_scores_path(@course_id, @scorecard.id) do |f|%>
+  <%= f.label :score %>
+  <%= f.text_field :score %>
+  <%= f.label :green_ir %>
+  <%= f.check_box :green_ir %>
+  <%= f.label :fairway %>
+  <%= f.check_box :fairway %>
+  <%= f.label :number_of_putts %>
+  <%= f.text_field :number_of_putts %>
+  <%= f.submit 'Next Hole' %>
+<% end %>
