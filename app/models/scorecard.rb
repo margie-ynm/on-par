@@ -35,7 +35,6 @@ class Scorecard < ActiveRecord::Base
       if holescore.fairway == true
         num += 1
       end
-      puts num
     end
     num
   end
@@ -65,5 +64,5 @@ class Scorecard < ActiveRecord::Base
     end
     putts
   end
-  
+
 end

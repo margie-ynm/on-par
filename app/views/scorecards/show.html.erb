@@ -1,7 +1,7 @@
 <div class="well">
   <h4>Fairway count: <%= 100 * @scorecard.fairway_count / @scorecard.number_of_holes %>%</h4>
   <h4>Green in Regulation: <%= 100 * @scorecard.gir_count / @scorecard.number_of_holes %>%</h4>
-  <h4>Number of putts: <%= 1.0 * @scorecard.num_of_putts / @scorecard.number_of_holes %></h4>
+  <h4>Number of putts: <%= @scorecard.num_of_putts %></h4>
   <h4>Total score: <%= @scorecard.total_score %></h4>
 </div>
 
