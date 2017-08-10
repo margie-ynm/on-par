@@ -8,9 +8,20 @@ class HoleScoresController < ApplicationController
   def create
     course_id = params[:course_id]
     @scorecard = Scorecard.find(params[:scorecard_id])
+    hole_scores = @scorecard.hole_scores.order(:hole_num)
+    if hole_scores.any?
+      hole_num = hole_scores.last.hole_num + 1
+    else
+      hole_num = 1
+    end
     @holescore = @scorecard.hole_scores.new(hole_score_params)
+    @holescore.hole_num = hole_num
     if @holescore.save
-      redirect_to course_scorecard_path(course_id, @scorecard.id)
+      if @scorecard.completed?
+        redirect_to course_scorecard_path(course_id, @scorecard.id)
+      else
+        redirect_to new_course_scorecard_hole_score_path(course_id, @scorecard.id)
+      end
     else
       render :new
     end

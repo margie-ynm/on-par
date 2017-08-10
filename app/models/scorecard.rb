@@ -13,4 +13,8 @@ class Scorecard < ActiveRecord::Base
     DB.exec("DELETE FROM holes WHERE course_id = #{self.course_id};")
   end
 
+  def completed?
+    self.hole_scores.length == self.holes.length
+  end
+
 end
