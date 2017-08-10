@@ -9,6 +9,14 @@ class Scorecard < ActiveRecord::Base
     end
   end
 
+  def find_hole_by_hole_num(number)
+    holes = self.holes
+    index = holes.find_index do |hole|
+      hole.hole_num == number
+    end
+    holes[index]
+  end
+
   def delete_holes
     DB.exec("DELETE FROM holes WHERE course_id = #{self.course_id};")
   end
