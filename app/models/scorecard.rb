@@ -57,4 +57,13 @@ class Scorecard < ActiveRecord::Base
     end
     score
   end
+
+  def num_of_putts
+    putts = 0
+    self.hole_scores.each do |holescore|
+      putts = putts + holescore.number_of_putts
+    end
+    putts
+  end
+  
 end
