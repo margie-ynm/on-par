@@ -25,4 +25,18 @@ class Scorecard < ActiveRecord::Base
     self.hole_scores.length == self.holes.length
   end
 
+  def number_of_holes
+    self.hole_scores.count
+  end
+
+  def fairway_count
+    num = 0
+    self.hole_scores.each do |holescore|
+      if holescore.fairway == true
+        num += 1
+      end
+      puts num
+    end
+    num
+  end
 end

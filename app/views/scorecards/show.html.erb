@@ -1,3 +1,9 @@
+<div class="well">
+  <h4>Fairway count: <%= @scorecard.fairway_count %></h4>
+  <h4>Green in Regulation: </h4>
+  <h4>Number of putts: </h4>
+  <h4>Total score: </h4>
+</div>
 
 <% @scorecard.hole_scores.order(:hole_num).each do |hole_score| %>
   <div class="well">
