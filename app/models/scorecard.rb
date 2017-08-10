@@ -39,4 +39,14 @@ class Scorecard < ActiveRecord::Base
     end
     num
   end
+
+  def gir_count
+    sum = 0
+    self.hole_scores.each do |holescore|
+      if holescore.green_ir == true
+        sum +=1
+      end
+    end
+    sum
+  end
 end
