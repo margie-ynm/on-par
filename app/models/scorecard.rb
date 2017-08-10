@@ -2,6 +2,7 @@ DB = PG.connect({dbname: 'on_par_development'})
 
 class Scorecard < ActiveRecord::Base
   has_many :hole_scores
+  belongs_to :user
 
   def holes
     DB.exec("SELECT * FROM holes WHERE course_id = #{self.course_id};").map do |hole|

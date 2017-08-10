@@ -1,5 +1,6 @@
 class ScorecardsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def show
     @scorecard = Scorecard.find(params[:id])
   end
