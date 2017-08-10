@@ -49,4 +49,12 @@ class Scorecard < ActiveRecord::Base
     end
     sum
   end
+
+  def total_score
+    score = 0
+    self.hole_scores.each do |holescore|
+      score = score + holescore.score
+    end
+    score
+  end
 end

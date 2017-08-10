@@ -2,7 +2,7 @@
   <h4>Fairway count: <%= 100 * @scorecard.fairway_count / @scorecard.number_of_holes %>%</h4>
   <h4>Green in Regulation: <%= 100 * @scorecard.gir_count / @scorecard.number_of_holes %>%</h4>
   <h4>Number of putts: </h4>
-  <h4>Total score: </h4>
+  <h4>Total score: <%= @scorecard.total_score %></h4>
 </div>
 
 <% @scorecard.hole_scores.order(:hole_num).each do |hole_score| %>
