@@ -10,6 +10,7 @@ class HoleScoresController < ApplicationController
       hole_num = 1
     end
     @holescore.hole_num = hole_num
+    @hole = @scorecard.find_hole_by_hole_num(@holescore.hole_num)
   end
 
   def create

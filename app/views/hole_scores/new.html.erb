@@ -1,7 +1,8 @@
 <%= link_to "Home", "/courses/search" %>
 
 <p> <b>HOLE:</b> <%= @holescore.hole_num %> </p>
-<p> Par <%= @scorecard.find_hole_by_hole_num(@holescore.hole_num).par %> </p>
+<p> Par <%= @hole.par %> </p>
+<p> <%= @hole.yards %> yards</p>
 <%= form_for @holescore, url: course_scorecard_hole_scores_path(@course_id, @scorecard.id) do |f|%>
   <%= f.label :score %>
   <%= f.text_field :score %>
