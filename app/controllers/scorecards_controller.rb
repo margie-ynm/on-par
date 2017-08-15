@@ -11,8 +11,7 @@ class ScorecardsController < ApplicationController
 
   def create
     course_id = params[:course_id]
-    @scorecard = Scorecard.new
-    @scorecard.user_id = current_user.id
+    @scorecard = current_user.scorecards.new
     @scorecard.course_id = course_id
     @scorecard.delete_holes
     if @scorecard.save
