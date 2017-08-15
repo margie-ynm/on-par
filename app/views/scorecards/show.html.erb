@@ -1,13 +1,18 @@
-<div class="well">
+
+<h2><%= @scorecard.description %></h2>
+
+<div class="well stats">
+  <h3>Your Stats:</h3>
   <h4>Fairway count: <%= 100 * @scorecard.fairway_count / @scorecard.number_of_holes %>%</h4>
   <h4>Green in Regulation: <%= 100 * @scorecard.gir_count / @scorecard.number_of_holes %>%</h4>
   <h4>Number of putts: <%= @scorecard.num_of_putts %></h4>
   <h4>Total score: <%= @scorecard.total_score %></h4>
 </div>
-
 <% @scorecard.hole_scores.order(:hole_num).each do |hole_score| %>
   <div class="well">
-    <h3> <%= hole_score.hole_num %> </h3>
+    <h3> Hole: <%= hole_score.hole_num %> </h3>
+    <h4>Par: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).par %></h4>
+    <h4>Yards: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).yards %></h4>
     <p> <%= hole_score.score %> </p>
     <p> <%= hole_score.fairway %> </p>
     <p> <%= hole_score.green_ir %> </p>
