@@ -1,17 +1,19 @@
-<h1> <%= @course.name %> </h1>
-<h3> <%= @course.city %>, <%= @course.state %> </h3>
-<h4>Hole Count: <%= @course.hole_count %></h4>
 <div class="row">
-  <img src="<%= @course.image_path %>" alt="Course Image">
-</div>
-
-<p> <%= link_to "Start Scorecard", new_course_scorecard_path(@course.id) %> </p>
-
-<h3>Scorecards:</h3>
-<ul>
-  <% @course.scorecards.each do |scorecard| %>
-    <% if scorecard.user_id == current_user.id %>
-      <li><%= link_to 'Scorecard', course_scorecard_path(@course.id, scorecard.id) %></li>
-    <% end %>
+  <div class="col-md-6">
+    <h1> <%= @course.name %> </h1>
+    <h3> <%= @course.city %>, <%= @course.state %> </h3>
+    <h4>Hole Count: <%= @course.hole_count %></h4>
+    <img src="<%= @course.image_path %>" alt="Course Image of <%= @course.name %>">
+    <p> <%= link_to "Start Scorecard", new_course_scorecard_path(@course.id) %> </p>
+  </div>
+  <% if user_signed_in? %>
+    <div class="col-md-6">
+      <h3>Your scorecards:</h3>
+      <ul>
+        <% current_user.scorecards.where(course_id: @course.id).each do |scorecard| %>
+          <li><%= link_to 'Scorecard', user_scorecard_path(current_user.id, scorecard.id) %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-</ul>
+</div>

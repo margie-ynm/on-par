@@ -5,9 +5,18 @@ class Scorecard < ActiveRecord::Base
   belongs_to :user
 
   def holes
-    DB.exec("SELECT * FROM holes WHERE course_id = #{self.course_id};").map do |hole|
+    holes = DB.exec("SELECT * FROM holes WHERE course_id = #{self.course_id};").map do |hole|
       Hole.new({hole_num: hole.fetch('hole_num'), course_id: hole.fetch('course_id'), par: hole.fetch('par'), yards: hole.fetch('yards'), id: hole.fetch('id')})
     end
+
+    if !holes.any?
+      holes = SwingBySwingService.get_holes_for_course(course_id)
+      holes.each do |hole|
+        hole.save
+      end
+    end
+
+    holes
   end
 
   def find_hole_by_hole_num(number)

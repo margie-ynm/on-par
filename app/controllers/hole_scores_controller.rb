@@ -26,8 +26,7 @@ class HoleScoresController < ApplicationController
     @holescore.hole_num = hole_num
     if @holescore.save
       if @scorecard.completed?
-        @scorecard.delete_holes
-        redirect_to course_scorecard_path(course_id, @scorecard.id)
+        redirect_to user_scorecard_path(current_user.id, @scorecard.id)
       else
         redirect_to new_course_scorecard_hole_score_path(course_id, @scorecard.id)
       end
