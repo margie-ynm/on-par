@@ -13,3 +13,33 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar-default {
+  background-color: #222222;
+}
+
+.nav.navbar-nav.navbar-right li a {
+  color: #efefef;
+  border: none;
+}
+
+.navbar-default .navbar-brand a {
+  color: #54ae47;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.image {
+  positino: relative;
+  width: 100%;
+}
+
+h1 {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  width: 100%;
+}
