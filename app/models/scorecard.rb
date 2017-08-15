@@ -4,6 +4,13 @@ class Scorecard < ActiveRecord::Base
   has_many :hole_scores
   belongs_to :user
 
+  def description
+    course = SwingBySwingService.get_course_by_id(self.course_id)
+    dateFormat = self.playdate.strftime("%m/%d/%Y")
+
+    "#{course.name} - #{dateFormat}"
+  end
+
   def holes
     holes = DB.exec("SELECT * FROM holes WHERE course_id = #{self.course_id};").map do |hole|
       Hole.new({hole_num: hole.fetch('hole_num'), course_id: hole.fetch('course_id'), par: hole.fetch('par'), yards: hole.fetch('yards'), id: hole.fetch('id')})

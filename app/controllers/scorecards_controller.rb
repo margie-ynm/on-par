@@ -11,8 +11,7 @@ class ScorecardsController < ApplicationController
 
   def create
     course_id = params[:course_id]
-    @scorecard = current_user.scorecards.new
-    @scorecard.course_id = course_id
+    @scorecard = current_user.scorecards.new(playdate: Time.new, course_id: course_id)
     if @scorecard.save
       @scorecard.holes # using side effects to ensure dbase populated w/ course holes
       redirect_to new_course_scorecard_hole_score_path(course_id, @scorecard.id)
