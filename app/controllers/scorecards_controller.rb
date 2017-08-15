@@ -1,6 +1,6 @@
 class ScorecardsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def show
     @scorecard = Scorecard.find(params[:id])
   end
@@ -12,6 +12,7 @@ class ScorecardsController < ApplicationController
   def create
     course_id = params[:course_id]
     @scorecard = Scorecard.new
+    @scorecard.user_id = current_user.id
     @scorecard.course_id = course_id
     @scorecard.delete_holes
     if @scorecard.save
