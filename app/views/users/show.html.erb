@@ -1,5 +1,5 @@
 <h1><%= @user.email %></h1>
 
 <% @user.scorecards.each do |scorecard| %>
-  <p> <%= link_to "scorecard", user_scorecard_path(@user, scorecard) %> </p>
+  <p> <%= link_to "scorecard", user_scorecard_path(@user.id, scorecard) %> </p>
 <% end %>
