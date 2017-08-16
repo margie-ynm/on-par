@@ -15,15 +15,20 @@
   <h4>Number of putts: <%= @scorecard.num_of_putts %></h4>
   <h4>Total score: <%= @scorecard.total_score %></h4>
 </div>
-<% @scorecard.hole_scores.order(:hole_num).each do |hole_score| %>
-  <div class="well">
-    <p> <%= link_to "Edit Hole Results", edit_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id, hole_score.hole_num) %> </p>
-    <h3> Hole: <%= hole_score.hole_num %> </h3>
-    <h4>Par: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).par %></h4>
-    <h4>Yards: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).yards %></h4>
-    <p> <%= hole_score.score %> </p>
-    <p> <%= hole_score.fairway %> </p>
-    <p> <%= hole_score.green_ir %> </p>
-    <p> <%= hole_score.number_of_putts %> </p>
-  </div>
-<% end %>
+
+<div class="row">
+  <% @scorecard.hole_scores.order(:hole_num).each do |hole_score| %>
+    <div class="col-md-4">
+      <div class="well">
+        <p> <%= link_to "Edit Hole Results", edit_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id, hole_score.hole_num) %> </p>
+        <h3> Hole: <%= hole_score.hole_num %> </h3>
+        <h4>Par: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).par %></h4>
+        <h4>Yards: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).yards %></h4>
+        <p> <%= hole_score.score %> </p>
+        <p> <%= hole_score.fairway %> </p>
+        <p> <%= hole_score.green_ir %> </p>
+        <p> <%= hole_score.number_of_putts %> </p>
+      </div>
+    </div>
+  <% end %>
+</div>
