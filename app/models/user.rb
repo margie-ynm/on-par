@@ -12,6 +12,7 @@ class User < ApplicationRecord
         sum += 1
       end
     end
+
     (1.0 * sum / self.hole_scores.length * 100).round(2)
   end
 
@@ -22,6 +23,7 @@ class User < ApplicationRecord
         sum += 1
       end
     end
+
     (1.0 * sum / self.hole_scores.length * 100).round(2)
   end
 
@@ -32,8 +34,7 @@ class User < ApplicationRecord
         result.push(holescore)
       end
     end
+
     result
   end
-
-
 end

@@ -1,6 +1,5 @@
-
 <h2><%= @scorecard.description %></h2>
-
+<%= link_to "delete", user_scorecard_path(current_user.id, @scorecard.id), :data => {:confirm => "Are you sure you want to delete?", :method => "delete"}%>
 <div class="well stats">
   <h3>Your Stats:</h3>
   <h4>Fairway count: <%= 100 * @scorecard.fairway_count / @scorecard.number_of_holes %>%</h4>

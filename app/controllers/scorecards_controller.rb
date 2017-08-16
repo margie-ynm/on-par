@@ -18,6 +18,15 @@ class ScorecardsController < ApplicationController
     end
   end
 
+  def destroy
+    @scorecard = Scorecard.find(params[:id])
+    @scorecard.hole_scores.each do |holescore|
+      holescore.destroy
+    end
+    @scorecard.destroy
+    redirect_to user_path(current_user.id)
+  end
+
 private
   def scorecard_params
     params.require(:scorecard).permit(:playdate)

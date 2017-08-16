@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :users, only: [:show] do
-    resources :scorecards, only: [:show]
+    resources :scorecards, only: [:show, :destroy]
   end
 
   resources :courses, only: [:show] do
