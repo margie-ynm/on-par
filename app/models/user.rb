@@ -4,4 +4,28 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :scorecards
+
+  def fairway_avg
+    sum = 0
+    self.hole_scores.each do |holescore|
+      if holescore.fairway == true
+        sum += 1
+      end
+    end
+    (1.0 * sum / self.hole_scores.length * 100).round(2)
+  end
+
+
+
+  def hole_scores
+    result = []
+    self.scorecards.each do |scorecard|
+      scorecard.hole_scores.each do |holescore|
+        result.push(holescore)
+      end
+    end
+    result
+  end
+
+
 end

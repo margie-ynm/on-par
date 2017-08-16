@@ -3,3 +3,5 @@
 <% @user.scorecards.each do |scorecard| %>
   <p> <%= link_to scorecard.description, user_scorecard_path(@user.id, scorecard) %> </p>
 <% end %>
+
+<p><%= @user.fairway_avg %> %<p>
