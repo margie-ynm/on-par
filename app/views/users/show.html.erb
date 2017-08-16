@@ -5,7 +5,13 @@
     <div class="well">
       <h2>Rounds Played:</h2>
       <% @user.scorecards.each do |scorecard| %>
-        <p> <%= link_to scorecard.description, user_scorecard_path(@user.id, scorecard) %> </p>
+        <p>
+          <%= link_to scorecard.description, user_scorecard_path(@user.id, scorecard) %>
+          <% if ! scorecard.completed? %>
+            |
+            <%= link_to 'Complete scorecard', new_course_scorecard_hole_score_path(scorecard.course_id, scorecard.id) %>
+          <% end %>
+        </p>
       <% end %>
     </div>
   </div>

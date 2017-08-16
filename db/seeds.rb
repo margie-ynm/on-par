@@ -1,7 +1,7 @@
 
 exampleCourseId = 11267
 
-exampleUser = User.new(email: "golfDude25@example.com", password: "password")
+exampleUser = User.new(email: "user@example.com", password: "password")
 exampleUser.save
 
 exampleScorecard = exampleUser.scorecards.create(course_id: exampleCourseId, playdate: Time.new)

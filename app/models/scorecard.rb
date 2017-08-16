@@ -6,9 +6,12 @@ class Scorecard < ActiveRecord::Base
 
   def description
     course = SwingBySwingService.get_course_by_id(self.course_id)
-    dateFormat = self.playdate.strftime("%m/%d/%Y")
 
-    "#{course.name} - #{dateFormat}"
+    "#{course.name} - #{self.date_format}"
+  end
+
+  def date_format
+    self.playdate.strftime("%m/%d/%Y")
   end
 
   def holes

@@ -1,5 +1,13 @@
 <h2><%= @scorecard.description %></h2>
-<%= link_to "delete", user_scorecard_path(current_user.id, @scorecard.id), :data => {:confirm => "Are you sure you want to delete?", :method => "delete"}%>
+
+<%= link_to 'View course', course_path(@scorecard.course_id) %>
+
+<% if ! @scorecard.completed? %>
+  |
+  <%= link_to 'Complete scorecard', new_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id) %>
+<% end %>
+|
+<%= link_to "Delete", user_scorecard_path(current_user.id, @scorecard.id), :data => {:confirm => "Are you sure you want to delete scorecard?", :method => "delete"}%>
 <div class="well stats">
   <h3>Your Stats:</h3>
   <h4>Fairway count: <%= 100 * @scorecard.fairway_count / @scorecard.number_of_holes %>%</h4>

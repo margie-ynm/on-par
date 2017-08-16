@@ -12,7 +12,13 @@
         <h3>Your scorecards:</h3>
         <ul>
           <% current_user.scorecards.where(course_id: @course.id).each do |scorecard| %>
-            <li><%= link_to 'Scorecard', user_scorecard_path(current_user.id, scorecard.id) %></li>
+            <li>
+              <%= link_to scorecard.date_format, user_scorecard_path(current_user.id, scorecard.id) %>
+              <% if ! scorecard.completed? %>
+                |
+                <%= link_to 'Complete scorecard', new_course_scorecard_hole_score_path(@course.id, scorecard.id) %>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       <% else %>
