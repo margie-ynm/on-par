@@ -27,6 +27,15 @@ class User < ApplicationRecord
     (1.0 * sum / self.hole_scores.length * 100).round(2)
   end
 
+  def avg_score_per_game
+    total = 0.0
+    self.scorecards.each do |scorecard|
+      total += ((18.0 / scorecard.holes.length) * scorecard.total_score)
+    end
+    (total / self.scorecards.length).round(2)
+  end
+
+
   def hole_scores
     result = []
     self.scorecards.each do |scorecard|
