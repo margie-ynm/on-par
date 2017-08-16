@@ -6,7 +6,8 @@ class ScorecardsController < ApplicationController
   end
 
   def new
-    self.create
+    @scorecard = current_user.scorecards.new(course_id: params[:course_id])
+
   end
 
   def create

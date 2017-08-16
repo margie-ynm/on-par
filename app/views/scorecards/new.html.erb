@@ -1,0 +1,7 @@
+<h2>Confirm Date:</h2>
+
+<%= form_for @scorecard, url: course_scorecards_path(@scorecard.course_id) do |f|%>
+  <%= f.label "Date" %>
+  <%= f.date_select :playdate, value: Time.now %>
+  <%= f.submit "Start Scorecard" %>
+<% end %>
