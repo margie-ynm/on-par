@@ -1,0 +1,14 @@
+<p> <b>HOLE:</b> <%= @holescore.hole_num %> </p>
+<p> Par <%= @hole.par %> </p>
+<p> <%= @hole.yards %> yards</p>
+<%= form_for @holescore, url: course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num) do |f|%>
+  <%= f.label :score %>
+  <%= f.text_field :score %>
+  <%= f.label :green_ir %>
+  <%= f.check_box :green_ir %>
+  <%= f.label :fairway %>
+  <%= f.check_box :fairway %>
+  <%= f.label :number_of_putts %>
+  <%= f.text_field :number_of_putts %>
+  <%= f.submit 'Update' %>
+<% end %>

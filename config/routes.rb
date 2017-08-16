@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :courses, only: [:show] do
     get 'search', on: :collection, to: 'courses#index'
     resources :scorecards, only: [:new, :create] do
-      resources :hole_scores, only: [:new, :create]
+      resources :hole_scores, only: [:new, :create, :edit, :update]
     end
   end
 
