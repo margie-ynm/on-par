@@ -1,9 +1,21 @@
-<h1><%= @user.email %></h1>
 
-<% @user.scorecards.each do |scorecard| %>
-  <p> <%= link_to scorecard.description, user_scorecard_path(@user.id, scorecard) %> </p>
-<% end %>
-
-<p><%= @user.fairway_avg %> %<p>
-<p> <%= @user.gir_avg %>% </p>
-<p> <%= @user.avg_score_per_game %> </p>
+<center><h1><%= @user.email %></center>
+<div class="row">
+  <div class="col-md-6">
+    <div class="well">
+      <h2>Rounds Played:</h2>
+      <% @user.scorecards.each do |scorecard| %>
+        <p> <%= link_to scorecard.description, user_scorecard_path(@user.id, scorecard) %> </p>
+      <% end %>
+    </div>
+  </div>
+    <div class="col-md-6">
+      <div class="well">
+      <h2>Overall Statistics:</h2>
+      <h3>Fairway Count: <%= @user.fairway_avg %> %<h3>
+      <h3>Green in Regulation: <%= @user.gir_avg %>% </h3>
+      <h3>Number of Putts: <%= @user.avg_num_of_putts %> </h3>
+      <h3>Score per Game: <%= @user.avg_score_per_game %> </h3>
+    </div>
+  </div>
+</div>

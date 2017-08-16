@@ -35,6 +35,13 @@ class User < ApplicationRecord
     (total / self.scorecards.length).round(2)
   end
 
+  def avg_num_of_putts
+    total = 0.0
+    self.scorecards.each do |scorecard|
+      total += ((18.0 / scorecard.holes.length ) * scorecard.num_of_putts)
+    end
+    (total / self.scorecards.length).round(2)
+  end
 
   def hole_scores
     result = []
