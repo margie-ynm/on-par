@@ -15,7 +15,15 @@ class User < ApplicationRecord
     (1.0 * sum / self.hole_scores.length * 100).round(2)
   end
 
-
+  def gir_avg
+    sum = 0
+    self.hole_scores.each do |holescore|
+      if holescore.green_ir == true
+        sum += 1
+      end
+    end
+    (1.0 * sum / self.hole_scores.length * 100).round(2)
+  end
 
   def hole_scores
     result = []
