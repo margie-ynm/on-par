@@ -16,7 +16,7 @@
               <%= link_to scorecard.date_format, user_scorecard_path(current_user.id, scorecard.id) %>
               <% if ! scorecard.completed? %>
                 |
-                <%= link_to 'Complete scorecard', new_course_scorecard_hole_score_path(@course.id, scorecard.id) %>
+                <%= link_to 'Finish', new_course_scorecard_hole_score_path(@course.id, scorecard.id) %>
               <% end %>
             </li>
           <% end %>

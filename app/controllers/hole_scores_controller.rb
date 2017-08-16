@@ -2,15 +2,21 @@ class HoleScoresController < ApplicationController
   def new
     @course_id = params[:course_id]
     @scorecard = Scorecard.find(params[:scorecard_id])
-    @holescore = @scorecard.hole_scores.new
-    hole_scores = @scorecard.hole_scores.order(:hole_num)
-    if hole_scores.any?
-      hole_num = hole_scores.last.hole_num + 1
+
+    if @scorecard.completed?
+      redirect_to user_scorecard_path(@scorecard.user_id, @scorecard.id)
     else
-      hole_num = 1
+      @holescore = @scorecard.hole_scores.new
+      hole_scores = @scorecard.hole_scores.order(:hole_num)
+      if hole_scores.any?
+        hole_num = hole_scores.last.hole_num + 1
+      else
+        hole_num = 1
+      end
+      @holescore.hole_num = hole_num
+      @hole = @scorecard.find_hole_by_hole_num(@holescore.hole_num)
+      render :new
     end
-    @holescore.hole_num = hole_num
-    @hole = @scorecard.find_hole_by_hole_num(@holescore.hole_num)
   end
 
   def create
@@ -40,7 +46,12 @@ class HoleScoresController < ApplicationController
     @scorecard = Scorecard.find(params[:scorecard_id])
     hole_num = params[:id].to_i
     @holescore = @scorecard.hole_scores.find_by(hole_num: hole_num)
-    @hole = @scorecard.find_hole_by_hole_num(hole_num)
+    if @holescore
+      @hole = @scorecard.find_hole_by_hole_num(hole_num)
+      render :edit
+    else
+      redirect_to new_course_scorecard_hole_score_path(@course_id, @scorecard.id)
+    end
   end
 
   def update
@@ -50,7 +61,13 @@ class HoleScoresController < ApplicationController
     @holescore = @scorecard.hole_scores.find_by(hole_num: hole_num)
     @hole = @scorecard.find_hole_by_hole_num(hole_num)
     if @holescore.update(hole_score_params)
-      redirect_to user_scorecard_path(@scorecard.user_id, @scorecard.id)
+      if @scorecard.completed?
+        redirect_to user_scorecard_path(@scorecard.user_id, @scorecard.id)
+      else
+        redirect_to edit_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id, hole_num)
+      end
+    else
+      render :edit
     end
   end
 

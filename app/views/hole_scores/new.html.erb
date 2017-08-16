@@ -1,6 +1,6 @@
-<p> <b>HOLE:</b> <%= @holescore.hole_num %> </p>
-<p> Par <%= @hole.par %> </p>
-<p> <%= @hole.yards %> yards</p>
+<h3> <b>HOLE:</b> <%= @holescore.hole_num %> </h3>
+<h4> Par <%= @hole.par %> </h4>
+<h4> <%= @hole.yards %> yards</h4>
 <%= form_for @holescore, url: course_scorecard_hole_scores_path(@course_id, @scorecard.id) do |f|%>
   <%= f.label :score %>
   <%= f.text_field :score %>
@@ -10,5 +10,13 @@
   <%= f.check_box :fairway %>
   <%= f.label :number_of_putts %>
   <%= f.text_field :number_of_putts %>
-  <%= f.submit 'Next Hole' %>
+  <% if @holescore.hole_num == @scorecard.holes.length %>
+    <%= f.submit 'Finish' %>
+  <% else %>
+    <%= f.submit 'Next Hole' %>
+  <% end %>
+<% end %>
+
+<% if @holescore.hole_num > 1 %>
+  <%= link_to 'Previous hole', edit_course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num-1) %>
 <% end %>

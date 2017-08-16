@@ -4,7 +4,7 @@
 
 <% if ! @scorecard.completed? %>
   |
-  <%= link_to 'Complete scorecard', new_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id) %>
+  <%= link_to 'Finish scorecard', new_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id) %>
 <% end %>
 |
 <%= link_to "Delete", user_scorecard_path(current_user.id, @scorecard.id), :data => {:confirm => "Are you sure you want to delete scorecard?", :method => "delete"}%>
