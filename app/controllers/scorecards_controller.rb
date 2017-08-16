@@ -13,6 +13,7 @@ class ScorecardsController < ApplicationController
     course_id = params[:course_id]
     @scorecard = current_user.scorecards.new({course_id: course_id}.merge(scorecard_params))
     if @scorecard.save
+      flash[:success] = "Scorecard started!"
       @scorecard.holes # using side effects to ensure dbase populated w/ course holes
       redirect_to new_course_scorecard_hole_score_path(course_id, @scorecard.id)
     end

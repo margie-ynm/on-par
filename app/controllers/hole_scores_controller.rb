@@ -61,6 +61,7 @@ class HoleScoresController < ApplicationController
     @holescore = @scorecard.hole_scores.find_by(hole_num: hole_num)
     @hole = @scorecard.find_hole_by_hole_num(hole_num)
     if @holescore.update(hole_score_params)
+      flash[:success] = "Hole updated!"
       if @scorecard.completed?
         redirect_to user_scorecard_path(@scorecard.user_id, @scorecard.id)
       else
