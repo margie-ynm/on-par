@@ -1,4 +1,4 @@
-DB = PG.connect({dbname: 'on_par_development'})
+DB = PG.connect({dbname: "on_par_#{Rails.env}" })
 
 class Course
   attr_accessor(:name, :id, :hole_count, :image_path, :city, :state)

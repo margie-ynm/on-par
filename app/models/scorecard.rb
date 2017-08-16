@@ -1,4 +1,4 @@
-DB = PG.connect({dbname: 'on_par_development'})
+DB = PG.connect({dbname: "on_par_#{Rails.env}" })
 
 class Scorecard < ActiveRecord::Base
   has_many :hole_scores
