@@ -14,6 +14,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.hidden-hack {
+  display: none;
+}
+
 .navbar-default {
   background-color: #222222;
 }
@@ -30,4 +34,17 @@
 .well.stats {
   background-color: #54ae47;;
   color: #efefef
+}
+
+.form-control {
+  width: 50%;
+}
+
+.btn {
+  margin-top: 1%;
+}
+
+.homepage {
+  text-align: center;
+  margin: 10px auto;
 }
