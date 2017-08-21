@@ -1,5 +1,3 @@
-DB = PG.connect({dbname: "on_par_#{Rails.env}" })
-
 class Course
   attr_accessor(:name, :id, :hole_count, :image_path, :city, :state)
 
@@ -13,9 +11,6 @@ class Course
   end
 
   def scorecards
-    DB.exec("SELECT * FROM scorecards WHERE course_id = #{self.id};").map do |scorecard|
-      Scorecard.new({id: scorecard.fetch('id'), course_id: scorecard.fetch('course_id'), playdate: scorecard.fetch('playdate')})
-    end
-
+    Scorecard.where(course_id: self.id)
   end
 end

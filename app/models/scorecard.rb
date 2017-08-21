@@ -1,5 +1,3 @@
-DB = PG.connect({dbname: "on_par_#{Rails.env}" })
-
 class Scorecard < ActiveRecord::Base
   has_many :hole_scores
   belongs_to :user
@@ -15,9 +13,7 @@ class Scorecard < ActiveRecord::Base
   end
 
   def holes
-    holes = DB.exec("SELECT * FROM holes WHERE course_id = #{self.course_id};").map do |hole|
-      Hole.new({hole_num: hole.fetch('hole_num'), course_id: hole.fetch('course_id'), par: hole.fetch('par'), yards: hole.fetch('yards'), id: hole.fetch('id')})
-    end
+    holes = Hole.where(course_id: self.course_id)
 
     if !holes.any?
       holes = SwingBySwingService.get_holes_for_course(course_id)
@@ -35,10 +31,6 @@ class Scorecard < ActiveRecord::Base
       hole.hole_num == number
     end
     holes[index]
-  end
-
-  def delete_holes
-    DB.exec("DELETE FROM holes WHERE course_id = #{self.course_id};")
   end
 
   def completed?
