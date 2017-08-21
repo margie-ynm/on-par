@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: on_par_production
+  url: <%= ENV['DATABASE_URL'] %>
   username: on_par
   password: <%= ENV['ON_PAR_DATABASE_PASSWORD'] %>
