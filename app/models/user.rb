@@ -5,6 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :scorecards
 
+  def hole_scores
+    result = []
+    self.scorecards.each do |scorecard|
+      scorecard.hole_scores.each do |holescore|
+        result.push(holescore)
+      end
+    end
+
+    result
+  end
+
   def fairway_avg
     sum = 0
     self.hole_scores.each do |holescore|
@@ -43,14 +54,5 @@ class User < ApplicationRecord
     (total / self.scorecards.length).round(2)
   end
 
-  def hole_scores
-    result = []
-    self.scorecards.each do |scorecard|
-      scorecard.hole_scores.each do |holescore|
-        result.push(holescore)
-      end
-    end
 
-    result
-  end
 end

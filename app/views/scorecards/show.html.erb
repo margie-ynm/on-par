@@ -25,8 +25,8 @@
         <h4>Par: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).par %></h4>
         <h4>Yards: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).yards %></h4>
         <p> <%= hole_score.score %> </p>
-        <p> <%= hole_score.fairway %> </p>
-        <p> <%= hole_score.green_ir %> </p>
+        <p> <%= hole_score.fairway ? 'Yes' : 'No' %> </p>
+        <p> <%= hole_score.green_ir ? 'Yes' : 'No' %> </p>
         <p> <%= hole_score.number_of_putts %> </p>
       </div>
     </div>

@@ -1,4 +1,8 @@
 <%# TODO: determine why this hack works %>
+
+<%# the presence of this form_tag seems to be %>
+<%# what makes the search form after it route %>
+<%# correctly when submitted %>
 <div class="hidden-hack">
   <%= form_tag '/', method: :get do %>
   <% end %>
