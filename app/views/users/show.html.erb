@@ -14,6 +14,11 @@
         </p>
       <% end %>
     </div>
+    <%= link_to "#{@user.followers.count} followers", followers_user_path(@user) %>
+    <%= link_to "#{@user.following.count} following", following_user_path(@user) %>
+
+
+    </div>
   </div>
     <div class="col-md-6">
       <div class="well">
