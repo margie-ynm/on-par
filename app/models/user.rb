@@ -5,6 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :scorecards
 
+  has_many :active_connections, class_name: "UserConnection",
+                                foreign_key: "follower_id",
+                                dependent: :destroy
+
+  has_many :passive_connections, class_name: "UserConnection",
+                                 foreign_key: "followed_id",
+                                 dependent: :destroy
+
+  has_many :following, through: :active_connections, source: :followed
+  has_many :followers, through: :passive_connections
+
   def hole_scores
     result = []
     self.scorecards.each do |scorecard|
