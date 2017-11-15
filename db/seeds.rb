@@ -4,6 +4,15 @@ exampleCourseId = 11267
 exampleUser = User.new(email: "user@example.com", password: "password")
 exampleUser.save
 
+exampleUser2 = User.new(email: "user2@example.com", password: "password2")
+exampleUser2.save
+
+exampleUser3 = User.new(email: "user3@example.com", password: "password3")
+exampleUser3.save
+
+exampleUser4 = User.new(email: "user4@example.com", password: "password4")
+exampleUser4.save
+
 exampleScorecard = exampleUser.scorecards.create(course_id: exampleCourseId, playdate: Time.new)
 
 hole_scores_list = [

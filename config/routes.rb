@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :users, only: [:show, :index] do
+    member do
+      get :following, :followers
+    end
     resources :scorecards, only: [:show, :destroy]
   end
 
