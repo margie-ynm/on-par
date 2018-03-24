@@ -1,3 +1,10 @@
+<form class="navbar-form navbar-left">
+  <div class="form-group">
+    <%= render "search_email" %>
+  </div>
+
+</form>
+
 <% @users.each do |user| %>
   <li><%= link_to user.email, user_path(user.id) %></li>
 <% end %>

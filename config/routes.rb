@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :users, only: [:show, :index] do
+    get 'search_email', on: :collection, to: "users#index"
     member do
       get :following, :followers
     end

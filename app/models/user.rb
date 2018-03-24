@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :following, through: :active_connections, source: :followed
   has_many :followers, through: :passive_connections, source: :follower
 
+  scope :search_email, -> (name_parameter) { where(email: name_parameter.downcase) }
+
   def follow(other_user)
     following << other_user
   end

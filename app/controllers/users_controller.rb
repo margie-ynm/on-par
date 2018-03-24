@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    if params.key?(:search_email)
+      email = params[:search_email]
+      @users = User.search_email(email)
+    else
+      @users = []
+    end
   end
+
   def show
     @user = User.find(params[:id])
   end
@@ -16,4 +22,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @following = @user.following
   end
+
+
 end
