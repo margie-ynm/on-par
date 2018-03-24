@@ -43,40 +43,60 @@ class User < ApplicationRecord
 
   def fairway_avg
     sum = 0
-    self.hole_scores.each do |holescore|
-      if holescore.fairway == true
-        sum += 1
+    count = 0
+    self.scorecards.each do |scorecard|
+      if scorecard.completed?
+        scorecard.hole_scores.each do |holescore|
+          if holescore.fairway == true
+            sum += 1
+          end
+          count += 1
+        end
       end
     end
 
-    (1.0 * sum / self.hole_scores.length * 100).round(2)
+    (1.0 * sum / count * 100).round(2)
   end
 
   def gir_avg
     sum = 0
-    self.hole_scores.each do |holescore|
-      if holescore.green_ir == true
-        sum += 1
+    count = 0
+    self.scorecards.each do |scorecard|
+      if scorecard.completed?
+        scorecard.hole_scores.each do |holescore|
+          if holescore.green_ir == true
+            sum += 1
+          end
+          count +=1
+        end
       end
     end
 
-    (1.0 * sum / self.hole_scores.length * 100).round(2)
+    (1.0 * sum / count * 100).round(2)
   end
 
   def avg_score_per_game
     total = 0.0
+    count = 0
     self.scorecards.each do |scorecard|
-      total += ((18.0 / scorecard.holes.length) * scorecard.total_score)
+      if scorecard.completed?
+        total += ((18.0 / scorecard.holes.length) * scorecard.total_score)
+        count += 1
+      end
     end
-    (total / self.scorecards.length).round(2)
+    (total / count).round(2)
   end
 
   def avg_num_of_putts
     total = 0.0
+    count = 0
     self.scorecards.each do |scorecard|
-      total += ((18.0 / scorecard.holes.length ) * scorecard.num_of_putts)
+      if scorecard.completed?
+        total += ((18.0 / scorecard.holes.length ) * scorecard.num_of_putts)
+        count += 1
+      end
     end
-    (total / self.scorecards.length).round(2)
+    (total / count).round(2)
   end
 
 
