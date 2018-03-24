@@ -13,6 +13,11 @@ exampleUser3.save
 exampleUser4 = User.new(email: "user4@example.com", password: "password4")
 exampleUser4.save
 
+exampleConnection = UserConnection.create(follower: exampleUser, followed: exampleUser3)
+exampleConection2 = UserConnection.create(follower: exampleUser, followed: exampleUser4)
+exampleConnection3 = UserConnection.create(follower: exampleUser4, followed: exampleUser)
+exampleConnection4 = UserConnection.create(follower: exampleUser3, followed: exampleUser)
+
 exampleScorecard = exampleUser.scorecards.create(course_id: exampleCourseId, playdate: Time.new)
 
 hole_scores_list = [
