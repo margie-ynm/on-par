@@ -15,5 +15,5 @@ Rails.application.routes.draw do
       resources :hole_scores, only: [:new, :create, :edit, :update]
     end
   end
-
+  resources :user_connections, only: [:create, :destroy]
 end

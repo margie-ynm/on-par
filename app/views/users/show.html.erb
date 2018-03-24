@@ -14,8 +14,10 @@
         </p>
       <% end %>
     </div>
+    <%= render 'follow_form' if user_signed_in? %>
     <%= link_to "#{@user.followers.count} followers", followers_user_path(@user) %>
     <%= link_to "#{@user.following.count} following", following_user_path(@user) %>
+
 
 
     </div>

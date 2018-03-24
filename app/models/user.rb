@@ -14,7 +14,19 @@ class User < ApplicationRecord
                                  dependent: :destroy
 
   has_many :following, through: :active_connections, source: :followed
-  has_many :followers, through: :passive_connections
+  has_many :followers, through: :passive_connections, source: :follower
+
+  def follow(other_user)
+    following << other_user
+  end
+
+  def unfollow(other_user)
+    following.delete(other_user)
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
 
   def hole_scores
     result = []
