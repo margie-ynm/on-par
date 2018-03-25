@@ -9,12 +9,7 @@
       <div class="navbar-brand"> <%= link_to "OnPar", root_path %></div>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <%= render "layouts/search" %>
-        </div>
 
-      </form>
 
       <ul class="nav navbar-nav navbar-right">
 
@@ -25,8 +20,14 @@
           <li><%= link_to "Sign up", new_user_registration_path %></li>
           <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
+        <li><form class="navbar-form">
+          <div class="form-group">
+            <%= render "layouts/search" %>
+          </div>
+        </form></li>
       </ul>
-    
+
+
 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
