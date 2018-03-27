@@ -15,6 +15,35 @@
         <%= render 'follow_form' if user_signed_in? %>
       </div>
     </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-4">
+        <h6>
+          <span class="follow-count"><%= @user.scorecards.count %></span>
+          <span class="info-count"><center>Rounds</center></span>
+        </h6>
+      </div>
+      <div class="col-xs-4">
+        <h6>
+          <a href="<%= followers_user_path(@user) %>">
+            <span class="follow-count">
+              <%= @user.followers.count %>
+            </span>
+            <center>followers</center>
+          </a>
+        </h6>
+      </div>
+      <div class="col-xs-4">
+        <h6>
+          <a href="<%= followers_user_path(@user) %>">
+            <span class="follow-count">
+              <%= @user.following.count %>
+            </span>
+            <center>following</center>
+          </a>
+        </h6>
+      </div>
+    </div>
     <div class="well">
       <h2>Rounds Played:</h2>
       <% @user.scorecards.each do |scorecard| %>
@@ -28,6 +57,5 @@
       <% end %>
     </div>
 
-    <%= link_to "#{@user.followers.count} followers", followers_user_path(@user) %>
-    <%= link_to "#{@user.following.count} following", following_user_path(@user) %>
+
   </div>
