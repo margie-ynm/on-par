@@ -1,8 +1,16 @@
+<div class="container">
+  <center><h1><%= @user.email %></center>
+    <div class="row">
+      <div class="col-xs-6">
+        <h6>Average Score: <span class="avg"><%= @user.avg_score_per_game %></span> </h6>
+        <h6>Number of Putts: <span class="avg"><%= @user.avg_num_of_putts %></span></h6>
+      </div>
+      <div class="col-xs-6">
+        <h6>Fairway Count: <span class="avg"><%= @user.fairway_avg %></span> %<h6>
+        <h6>GIR: <span class="avg"><%= @user.gir_avg %>%</span></h6>
+      </div>
+    </div>
 
-<center><h1><%= @user.email %></center>
-  <%= link_to "Search Golfers", users_path %>
-<div class="row">
-  <div class="col-md-6">
     <div class="well">
       <h2>Rounds Played:</h2>
       <% @user.scorecards.each do |scorecard| %>
@@ -18,18 +26,4 @@
     <%= render 'follow_form' if user_signed_in? %>
     <%= link_to "#{@user.followers.count} followers", followers_user_path(@user) %>
     <%= link_to "#{@user.following.count} following", following_user_path(@user) %>
-
-
-
-    </div>
   </div>
-    <div class="col-md-6">
-      <div class="well">
-      <h2>Overall Statistics:</h2>
-      <h3>Fairway Count: <%= @user.fairway_avg %> %<h3>
-      <h3>Green in Regulation: <%= @user.gir_avg %>% </h3>
-      <h3>Number of Putts: <%= @user.avg_num_of_putts %> </h3>
-      <h3>Score per Game: <%= @user.avg_score_per_game %> </h3>
-    </div>
-  </div>
-</div>

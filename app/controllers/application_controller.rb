@@ -8,6 +8,5 @@ class ApplicationController < ActionController::Base
     else
       root_path
     end
-    # current_user
   end
 end
