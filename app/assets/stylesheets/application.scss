@@ -28,7 +28,7 @@
 }
 
 .navbar-default .navbar-brand a {
-  color: #54ae47;
+  color: #ffd800;
 }
 
 .well.stats {
@@ -57,4 +57,23 @@
   color: #54ae47;
   background-color: #efefef;
   border-color: #54ae47;
+}
+
+.homepage h1{
+  color: #54ae47;
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+                 0px -5px 35px rgba(255,255,255,0.3);
+  font-style: italic;
+}
+
+.field {
+  margin-top: 1%;
+}
+
+h1, span, #brand {
+color: #ffd800;
+text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+font-style: italic;
 }
