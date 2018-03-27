@@ -10,7 +10,11 @@
         <h6>GIR: <span class="avg"><%= @user.gir_avg %>%</span></h6>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render 'follow_form' if user_signed_in? %>
+      </div>
+    </div>
     <div class="well">
       <h2>Rounds Played:</h2>
       <% @user.scorecards.each do |scorecard| %>
@@ -23,7 +27,7 @@
         </p>
       <% end %>
     </div>
-    <%= render 'follow_form' if user_signed_in? %>
+
     <%= link_to "#{@user.followers.count} followers", followers_user_path(@user) %>
     <%= link_to "#{@user.following.count} following", following_user_path(@user) %>
   </div>
