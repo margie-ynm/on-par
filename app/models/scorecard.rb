@@ -2,10 +2,10 @@ class Scorecard < ActiveRecord::Base
   has_many :hole_scores
   belongs_to :user
 
-  def description
+  def course_name
     course = SwingBySwingService.get_course_by_id(self.course_id)
 
-    "#{course.name} - #{self.date_format}"
+    "#{course.name}"
   end
 
   def date_format
