@@ -1,22 +1,40 @@
-<h3> <b>HOLE:</b> <%= @holescore.hole_num %> </h3>
-<h4> Par <%= @hole.par %> </h4>
-<h4> <%= @hole.yards %> yards</h4>
-<%= form_for @holescore, url: course_scorecard_hole_scores_path(@course_id, @scorecard.id) do |f|%>
-  <%= f.label :score %>
-  <%= f.text_field :score %>
-  <%= f.label :green_ir %>
-  <%= f.check_box :green_ir %>
-  <%= f.label :fairway %>
-  <%= f.check_box :fairway %>
-  <%= f.label :number_of_putts %>
-  <%= f.text_field :number_of_putts %>
-  <% if @holescore.hole_num == @scorecard.holes.length %>
-    <%= f.submit 'Finish' %>
-  <% else %>
-    <%= f.submit 'Next Hole' %>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="scorecard">
+      <div class="card-content">
+        <div class="card-info">
+          <h1> <b>Hole:</b> <%= @holescore.hole_num %> </h1>
+          <h3> Par <%= @hole.par %> </h3>
+          <h5> <%= @hole.yards %> yards</h5>
+        </div>
+        <%= form_for @holescore, url: course_scorecard_hole_scores_path(@course_id, @scorecard.id), class: "hole-form" do |f|%>
+        <div class="form-group">
+          <%= f.label :score %>
+          <%= f.text_field :score, class: 'field-line'%>
+        </div>
+        <div class="form-group">
+          <%= f.label :green_ir %>
+          <%= f.check_box :green_ir %>
+        </div>
+        <div class="form-group">
+          <%= f.label :fairway %>
+          <%= f.check_box :fairway %>
+        </div>
+        <div class="form-group">
+          <%= f.label :number_of_putts %>
+          <%= f.text_field :number_of_putts, class: 'field-line', id: 'putts-input'%>
+        </div>
+      </div>
+    </div>
+    <% if @holescore.hole_num == @scorecard.holes.length %>
+      <%= f.submit 'Finish', class: "btn card" %>
+    <% else %>
+      <%= f.submit 'Next Hole', class: "btn card"%>
+    <% end %>
+    <% end %>
 
-<% if @holescore.hole_num > 1 %>
-  <%= link_to 'Previous hole', edit_course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num-1) %>
-<% end %>
+    <% if @holescore.hole_num > 1 %>
+      <%= link_to 'Previous Hole', edit_course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num-1), class: "prev" %>
+    <% end %>
+  </div>
+</div>

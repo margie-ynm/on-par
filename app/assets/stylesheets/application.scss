@@ -113,7 +113,6 @@ font-style: italic;
   color: #999;
 }
 
-
 .scorecard {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
   border-radius: 3px;
@@ -122,4 +121,50 @@ font-style: italic;
   background-color: #fff;
   border-top: 4px solid #54ae47;
 
+}
+
+.card-info {
+  border-bottom: solid 2px #333;
+  margin-bottom: 10px;
+}
+
+
+.field-line {
+  padding: 5px 10px;
+  border: none;
+  border-bottom: solid 2px #c1c1c1;
+  transition: all 0.3s;
+  outline: none;
+  width: 20%;
+}
+
+input[type="text"]:focus {
+  border-bottom: solid 2px #54ae47;
+  padding-bottom: 3px;
+}
+
+label {
+  padding: 10px;
+  font-size: 1.2em;
+  margin-right: 10px;
+
+}
+
+.form-group:nth-child(even) {
+  background-color: #eee;
+
+}
+
+h1 {
+  margin-top: 0px;
+}
+
+#putts-input {
+  background-color: #eee;
+}
+
+.btn.card {
+  float: right;
+  background-color: #54ae47;
+  color: white;
 }
