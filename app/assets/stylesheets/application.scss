@@ -17,7 +17,7 @@
 @import "bootstrap";
 
 body {
-  background-color: #f7f7f7;
+  background-color: #fcfcfc;
 }
 
 .hidden-hack {
@@ -25,16 +25,18 @@ body {
 }
 
 .navbar-default {
-  background-color: #222222;
+  background-color: #fff;
 }
 
 .nav.navbar-nav.navbar-right li a {
-  color: #efefef;
+  color: #222222;
   border: none;
 }
 
-.navbar-default .navbar-brand a {
-  color: #54ae47;
+.navbar-default .navbar-brand img {
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
 }
 
 .well.stats {
@@ -119,5 +121,5 @@ font-style: italic;
   padding: 10px;
   background-color: #fff;
   border-top: 4px solid #54ae47;
-  
+
 }
