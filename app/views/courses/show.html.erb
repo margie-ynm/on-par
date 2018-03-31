@@ -1,26 +1,32 @@
 <div class="row">
   <div class="col-md-6">
-    <h1> <%= @course.name %> </h1>
-    <h3> <%= @course.city %>, <%= @course.state %> </h3>
-    <h4>Hole Count: <%= @course.hole_count %></h4>
-    <img src="<%= @course.image_path %>" alt="Course Image of <%= @course.name %>">
-    <p> <%= link_to "Start Scorecard", new_course_scorecard_path(@course.id) %> </p>
+    <div class="course-detail">
+      <div class="card-info">
+      <h1> <%= @course.name %> </h1>
+      <h3> <%= @course.city %>, <%= @course.state %> </h3>
+      <h4>Hole Count: <%= @course.hole_count %></h4>
+    </div>
+      <img src="<%= @course.image_path %>" alt="Course Image of <%= @course.name %>">
+      <h5 id="start-card"> <%= link_to "Start Scorecard", new_course_scorecard_path(@course.id) %> </h5>
+    </div>
   </div>
   <% if user_signed_in? %>
     <div class="col-md-6">
       <% if current_user.scorecards.where(course_id: @course.id).any? %>
-        <h3>Your scorecards:</h3>
-        <ul>
+        <h4>Scorecards:</h4>
+
           <% current_user.scorecards.where(course_id: @course.id).each do |scorecard| %>
-            <li>
+          <div class="scorecard">
+            <h6>
               <%= link_to scorecard.date_format, user_scorecard_path(current_user.id, scorecard.id) %>
               <% if ! scorecard.completed? %>
                 |
                 <%= link_to 'Finish', new_course_scorecard_hole_score_path(@course.id, scorecard.id) %>
               <% end %>
-            </li>
+            </h6>
+          </div>
           <% end %>
-        </ul>
+
       <% else %>
         <center><h4>You don't have any scorecards for this course yet.</h4></center>
       <% end %>
