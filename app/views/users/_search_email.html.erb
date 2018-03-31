@@ -1,6 +1,8 @@
-<div class="form-group">
-<%= form_tag users_path, method: :get do %>
-  <%= text_field_tag(:search_email, params[:search_email], placeholder: 'Search users by email', class: 'form-control') %>
-  <%= submit_tag("Search", class: 'btn btn-success') %>
-<% end %>
+<div class="search-form">
+  <div class="form-group">
+  <%= form_tag users_path, method: :get do %>
+    <%= text_field_tag(:search_email, params[:search_email], placeholder: 'Search users by email', class: 'form-control') %>
+    <%= submit_tag("Search", class: 'btn btn-success') %>
+  <% end %>
+</div>
 </div>

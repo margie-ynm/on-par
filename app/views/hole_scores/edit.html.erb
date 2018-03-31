@@ -1,25 +1,47 @@
-<h3> <b>HOLE:</b> <%= @holescore.hole_num %> </h3>
-<h4> Par <%= @hole.par %> </h4>
-<h4> <%= @hole.yards %> yards</h4>
-<%= form_for @holescore, url: course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num) do |f|%>
-  <%= f.label :score %>
-  <%= f.text_field :score %>
-  <%= f.label :green_ir %>
-  <%= f.check_box :green_ir %>
-  <%= f.label :fairway %>
-  <%= f.check_box :fairway %>
-  <%= f.label :number_of_putts %>
-  <%= f.text_field :number_of_putts %>
-  <%= f.submit 'Update' %>
-<% end %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="scorecard">
+      <div class="card-content">
+        <div class="card-info">
+          <h1> <b>Hole:</b> <%= @holescore.hole_num %> </h1>
+          <h3> Par <%= @hole.par %> </h3>
+          <h5> <%= @hole.yards %> yards</h5>
+        </div>
+        <%= form_for @holescore, url: course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num), class: 'hole-form' do |f|%>
+        <div class="form-group">
+          <%= f.label :score %>
+          <%= f.text_field :score, class: 'field-line' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :green_ir %>
+          <%= f.check_box :green_ir %>
+        </div>
+        <div class="form-group">
+          <%= f.label :fairway %>
+          <%= f.check_box :fairway %>
+        </div>
+        <div class="form-group">
+          <%= f.label :number_of_putts %>
+          <%= f.text_field :number_of_putts, class: 'field-line', id:'putts-input' %>
+        </div>
 
-<% if @holescore.hole_num > 1 %>
-  <%= link_to 'Previous hole', edit_course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num-1) %>
-<% end %>
+      </div>
+    </div>
+    <center>
+      <%= f.submit 'Update', class: 'btn btn-success update-card' %>
+    </center>
+  <% end %>
+  <center>
+  <% if @holescore.hole_num > 1 %>
+    <%= link_to '', edit_course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num-1), class: 'glyphicon glyphicon-step-backward' %>
+  <% end %>
 
-<% if @holescore.hole_num < @scorecard.holes.length %>
-  | <%= link_to 'Next hole', edit_course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num+1) %>
-<% end %>
-<% if ! @scorecard.completed? && (@scorecard.hole_scores.length == @holescore.hole_num+1) %>
-| <%= link_to 'Current Hole', new_course_scorecard_hole_score_path %>
-<% end %>
+  <% if @holescore.hole_num < @scorecard.holes.length %>
+    | <%= link_to '', edit_course_scorecard_hole_score_path(@course_id, @scorecard.id, @holescore.hole_num+1), class: 'glyphicon glyphicon-step-forward' %>
+  <% end %>
+</center>
+  <% if ! @scorecard.completed? && (@scorecard.hole_scores.length == @holescore.hole_num+1) %>
+  | <%= link_to 'Current Hole', new_course_scorecard_hole_score_path %>
+  <% end %>
+  </div>
+</div>
