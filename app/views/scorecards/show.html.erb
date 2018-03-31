@@ -1,34 +1,49 @@
-<h2><%= @scorecard.course_name %></h2>
-
-<%= link_to 'View course', course_path(@scorecard.course_id) %>
-
+<center><h1><%=link_to @scorecard.course_name, course_path(@scorecard.course_id)%></h1></center>
 <% if ! @scorecard.completed? %>
   |
   <%= link_to 'Finish scorecard', new_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id) %>
 <% end %>
-|
-<%= link_to "Delete", user_scorecard_path(current_user.id, @scorecard.id), :data => {:confirm => "Are you sure you want to delete scorecard?", :method => "delete"}%>
-<div class="well stats">
-  <h3>Your Stats:</h3>
-  <h4>Fairway count: <%= 100 * @scorecard.fairway_count / @scorecard.number_of_holes %>%</h4>
-  <h4>Green in Regulation: <%= 100 * @scorecard.gir_count / @scorecard.number_of_holes %>%</h4>
-  <h4>Number of putts: <%= @scorecard.num_of_putts %></h4>
-  <h4>Total score: <%= @scorecard.total_score %></h4>
-</div>
+
+  <center>
+    <div class="row">
+      <div class="col-xs-6">
+        <h6>Total Score: <%= @scorecard.total_score %></h6>
+        <h6>Number of Putts: <%= @scorecard.num_of_putts %></h6>
+      </div>
+      <div class="col-xs-6">
+        <h6>Fairway Count: <%= 100 * @scorecard.fairway_count / @scorecard.number_of_holes %>%</h6>
+        <h6>GIR: <%= 100 * @scorecard.gir_count / @scorecard.number_of_holes %>%</h6>
+      </div>
+    </div>
+  </center>
 
 <div class="row">
   <% @scorecard.hole_scores.order(:hole_num).each do |hole_score| %>
-    <div class="col-md-4">
-      <div class="well">
-        <p> <%= link_to "Edit Hole Results", edit_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id, hole_score.hole_num) %> </p>
-        <h3> Hole: <%= hole_score.hole_num %> </h3>
-        <h4>Par: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).par %></h4>
-        <h4>Yards: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).yards %></h4>
-        <p> <%= hole_score.score %> </p>
-        <p> <%= hole_score.fairway ? 'Yes' : 'No' %> </p>
-        <p> <%= hole_score.green_ir ? 'Yes' : 'No' %> </p>
-        <p> <%= hole_score.number_of_putts %> </p>
+    <div class="col-xs-6 col-md-4">
+      <div class="scorecard">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="card-info">
+              <h5> Hole: <%= hole_score.hole_num %><%= link_to "", edit_course_scorecard_hole_score_path(@scorecard.course_id, @scorecard.id, hole_score.hole_num), class: 'glyphicon glyphicon-pencil'%></h5>
+              <h5>Par: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).par %></h5>
+              <h5>Yards: <%= @scorecard.find_hole_by_hole_num(hole_score.hole_num).yards %></h5>
+            </div>
+          </div>
+        </div>
+        <div class="card-stats">
+          <p>Score: <span class="card-results"><%= hole_score.score %></span> </p>
+        </div>
+        <div class="card-stats">
+          <p>Fairway: <span class="card-results"><%= hole_score.fairway ? 'Yes' : 'No' %></span> </p>
+        </div>
+        <div class="card-stats">
+          <p>GIR: <span class="card-results"><%= hole_score.green_ir ? 'Yes' : 'No' %></span></p>
+        </div>
+        <div class="card-stats">
+          <p>Number of putts: <span class="card-results"><%= hole_score.number_of_putts %></span></p>
+        </div>
       </div>
     </div>
   <% end %>
 </div>
+<h6><%= link_to "Delete", user_scorecard_path(current_user.id, @scorecard.id), :data => {:confirm => "Are you sure you want to delete scorecard?", :method => "delete"}, class: 'btn btn-danger'%></h6>

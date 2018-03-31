@@ -49,7 +49,8 @@
         <div class="col-xs-12">
           <div class="scorecard">
             <h6><%= scorecard.date_format %></h6>
-            <h5><%= link_to scorecard.course_name, user_scorecard_path(@user.id, scorecard) %></h6>
+            <h5><%= link_to scorecard.course_name, user_scorecard_path(@user.id, scorecard) %></h5>
+            <h6><%= link_to "Delete", user_scorecard_path(current_user.id, scorecard.id), :data => {:confirm => "Are you sure you want to delete scorecard?", :method => "delete"}%></h6>
             <% if ! scorecard.completed? %>
             <h6><%= link_to 'Finish scorecard', new_course_scorecard_hole_score_path(scorecard.course_id, scorecard.id) %></h6>
             <% end %>
@@ -57,7 +58,4 @@
         </div>
       </div>
     <% end %>
-
-
-
   </div>

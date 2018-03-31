@@ -39,11 +39,6 @@ body {
   display: block;
 }
 
-.well.stats {
-  background-color: #54ae47;;
-  color: #efefef
-}
-
 
 .homepage {
   text-align: center;
@@ -167,4 +162,28 @@ h1 {
   float: right;
   background-color: #54ae47;
   color: white;
+}
+
+.card-results {
+  font-weight: bold;
+
+}
+
+.glyphicon-pencil {
+  float: right;
+}
+
+.card-stats:nth-child(even) {
+  background-color: #eee;
+
+}
+
+.card-stats p {
+  margin-bottom: 5px;
+
+}
+
+.btn-danger {
+  width: 100%;
+
 }
