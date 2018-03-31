@@ -1,4 +1,5 @@
 <div class="search-form">
+  <h3>Search Golfers:</h3>
   <div class="form-group">
   <%= form_tag users_path, method: :get do %>
     <%= text_field_tag(:search_email, params[:search_email], placeholder: 'Search users by email', class: 'form-control') %>

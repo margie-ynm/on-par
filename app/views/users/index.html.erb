@@ -1,10 +1,10 @@
-<form class="navbar-form navbar-left">
-  <div class="form-group">
-    <%= render "search_email" %>
-  </div>
-
-</form>
-
-<% @users.each do |user| %>
-  <li><%= link_to user.email, user_path(user.id) %></li>
+<%= render "search_email" %>
+<div class="user-results">
+<% if @users.any? %>
+  <% @users.each do |user| %>
+    <h4><%= link_to user.email, user_path(user.id) %></h4>
+  <% end %>
+<% else %>
+  <h4>Sorry no golfers found under that email. Please try again.</h4>
 <% end %>
+</div>
