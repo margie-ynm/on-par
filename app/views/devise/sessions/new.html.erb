@@ -1,9 +1,9 @@
 <div class="homepage">
-  <h1> Go green on the green with <span id="brand">OnPar</span></h1>
-  <h5>Your digital scorecard with golf statistics</h5>
-
-  <h2>Log in</h2>
-
+  <div class="login-detail">
+    <h1> Go green on the green</h1>
+    <h5>Your digital scorecard with golf statistics</h5>
+  </div>
+  <div class="course-detail">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <%= f.label :email %><br />
@@ -21,6 +21,7 @@
         <%= f.label :remember_me %>
       </div>
     <% end -%>
+  </div>
 
     <div class="actions">
       <%= f.submit "Log in", class: 'btn btn-success' %>
